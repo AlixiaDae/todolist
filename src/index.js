@@ -3,19 +3,27 @@ import Project from "./project";
 import Todos from "./Todos";
 
 // TEST
-let testTodo = new Todo("Today todo", "new test for todo box 1");
-let testTodo2 = new Todo("Today todo 2", "new test for todo box 2");
-let testTodo3 = new Todo("Today todo 3", "new test for todo box 3");
+let testTodo = new Todo("Todo 1", "new test for todo box 1");
+let testTodo2 = new Todo("Todo 2", "new test for todo box 2");
+let testTodo3 = new Todo("Todo 3", "new test for todo box 3");
+let dateSortTest = new Todo("Todo 5", "new test for date sorting", "12/2/2025");
+
 
 //
 
 const allTodos = new Todos();
 
 const todayTodos = allTodos.getProject("Today");
+const weekTodos = allTodos.getProject("This Week");
 
 todayTodos.addTodo(testTodo);
 todayTodos.addTodo(testTodo2);
 todayTodos.addTodo(testTodo3);
+
+weekTodos.addTodo(dateSortTest)
+
+allTodos.sortTodos()
+
 
 // DOM ELEMENTS
 const main = document.querySelector(".main-board");
@@ -72,6 +80,7 @@ function createProjectBox(projectObject) {
   if (projectTodos.length != 0) {
     const todoBox = document.createElement("div");
     todoBox.classList.add("todo-box");
+    todoBox.classList.add("visible");
 
     for (let i = 0; i < projectTodos.length; i++) {
       let todo = projectTodos[i];
@@ -87,6 +96,16 @@ function createProjectBox(projectObject) {
     }
 
     projectBox.appendChild(todoBox);
+
+    // Listeners
+
+    projectBox.addEventListener("click", (e) => {
+      if (todoBox.classList.contains("visible")) {
+        todoBox.classList.remove("visible");
+      } else {
+        todoBox.classList.add("visible");
+      }
+    });
   }
 
   return projectBox;
@@ -102,41 +121,38 @@ function createTodoBox(todoObject) {
 
   const todoTitle = document.createElement("p");
   todoTitle.classList.add("todo-title");
-  todoTitle.contentEditable = true;
   todoTitle.textContent = todoObject.title;
-
-  const todoDescription = document.createElement("p");
-  todoDescription.classList.add("todo-description");
-  todoDescription.contentEditable = true;
-  todoDescription.textContent = todoObject.description;
 
   const todoDate = document.createElement("p");
   todoDate.classList.add("todo-date");
   todoDate.textContent = todoObject.getDate();
 
-  const titleDescription = document.createElement("div");
-  titleDescription.classList.add("title-description");
+  const checkTitleDate = document.createElement("div");
+  checkTitleDate.classList.add("check-title-date");
+
+  checkTitleDate.append(checkBox, todoTitle, todoDate);
+
+  const todoDescription = document.createElement("p");
+  todoDescription.classList.add("todo-description");
+  todoDescription.textContent = todoObject.description;
 
   // Listeners
 
-  todoTitle.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      todoObject.title = todoTitle.textContent;
-      todoTitle.blur();
-      console.log(todayTodos);
+  todo.addEventListener("click", (e) => {
+    if (e.target != todoTitle) {
+      if (todoDescription.classList.contains("visible")) {
+        todoDescription.classList.remove("visible");
+      } else {
+        todoDescription.classList.add("visible");
+      }
     }
   });
 
-  todoDescription.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      todoObject.description = todoDescription.textContent;
-      todoDescription.blur();
-      console.log(todayTodos);
-    }
+  todoTitle.addEventListener("click", () => {
+    todoTitle.contentEditable = true;
   });
 
-  titleDescription.append(todoTitle, todoDescription);
-  todo.append(checkBox, titleDescription, todoDate);
+  todo.append(checkTitleDate, todoDescription);
 
   return todo;
 }

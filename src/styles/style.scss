@@ -50,7 +50,10 @@ main {
 
     .project-box {
         margin: 0.4em;
-        //border: 1px solid black;
+        
+        &:hover {
+            cursor: pointer;
+        }
 
         .project-header {
             margin: 0;
@@ -62,50 +65,70 @@ main {
         }
 
         .todo-box {
-            padding: 0.4em;
-            box-shadow: -2px -2px 2px 1px #e2e2e2 inset;
+            //height: 0;
+            //overflow: scroll;
+            //transition: all .5s ease-in-out;
+            overflow: hidden;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            box-shadow: 2px 2px 3px 1px #e2e2e2;
             
             .todo {
-                padding: 0.4em 0.4em 0.4em 2em;
-                gap: 2em;
+                position: relative;
 
-                .title-description {
-                    flex: 1;
+                .check-title-date {
+                    padding: 0.5em 0.5em 0.5em 1em;
 
                     .todo-title {
-                        font-size: 1.3em;
-                        padding: 0em 0.2em 0em 0.4em;
-
-                        &:focus {
-                            outline: none;
-                            box-shadow: -2px -2px 2px 2px rgb(202, 202, 202) inset;
-                        }
+                        font-size: 1.4em;
+                        margin-left: 1em;
                     }
-    
-                    .todo-description {
-                        padding: 0.5em;
-                        padding-left: 1.8em;
-                        color: rgb(197, 197, 197);
 
-                        &:hover {
-                            color: black;
-                        }
-
-                        &:focus {
-                            outline: none;
-                            box-shadow: -2px -2px 2px 2px rgb(202, 202, 202) inset;
-                        }
+                    .todo-date {
+                        font-size: 0.8em;
+                        margin-bottom: 12px;
+                        position: absolute;
+                        right: 5px;
+                        top: 5px;
                     }
-                }
-                .todo-date {
-                    font-size: 0.8em;
-                    margin-bottom: 2em;
-                    margin-right: 0.5em;
+
+                    @include flexCenter(row, "", center)
                 }
 
-                @include flexCenter(row, "", center)
+
+                .todo-description {
+                    height: 0;
+                    overflow: hidden;
+                    transition: all .5s ease-in-out;
+                    margin-left: 5em;
+
+                    @include flexCenter(row, "", center)
+                }
+
+                .visible {
+                    padding: 1.4em 0em 1.4em 0em;
+                    margin-bottom: 1em;
+
+                    @include flexCenter(row, "", center)
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: rgb(216, 216, 216)!important;
+                }
+
+                @include flexCenter(column, center, "");
+
+                
             }
         }
+        
+        /* for todo box
+        .visible {
+            height: 155px;
+
+        }*/
+
     }
     
 }

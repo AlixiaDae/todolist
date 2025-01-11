@@ -1,4 +1,5 @@
 @mixin flexCenter($direction, $justify, $align){
+    display: flex;
     flex-direction: $direction;
     justify-content: $justify;
     align-items: $align;
@@ -12,7 +13,6 @@ html {
 *::before,
 *::after {
     box-sizing: inherit;
-    
 }
 
 body {
@@ -28,19 +28,84 @@ h1 {
     display: flex;
     justify-content: center;
     margin: 0;
+    font-size: 3em;
+}
+
+p {
+    margin: 0;
 }
 
 main {
     flex: 1;
-    padding: 50px;
 }
 
 .main-board {
-    width: 70%;
+    width: 50%;
     height: 90%;
     border: 1px solid black;
     border-radius: 15px;
     margin: 0 auto;
+    padding: 1.5em;
 
+
+    .project-box {
+        margin: 0.4em;
+        //border: 1px solid black;
+
+        .project-header {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: bold;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 0.5em;
+        }
+
+        .todo-box {
+            padding: 0.4em;
+            box-shadow: -2px -2px 2px 1px #e2e2e2 inset;
+            
+            .todo {
+                padding: 0.4em 0.4em 0.4em 2em;
+                gap: 2em;
+
+                .title-description {
+                    flex: 1;
+
+                    .todo-title {
+                        font-size: 1.3em;
+                        padding: 0em 0.2em 0em 0.4em;
+
+                        &:focus {
+                            outline: none;
+                            box-shadow: -2px -2px 2px 2px rgb(202, 202, 202) inset;
+                        }
+                    }
+    
+                    .todo-description {
+                        padding: 0.5em;
+                        padding-left: 1.8em;
+                        color: rgb(197, 197, 197);
+
+                        &:hover {
+                            color: black;
+                        }
+
+                        &:focus {
+                            outline: none;
+                            box-shadow: -2px -2px 2px 2px rgb(202, 202, 202) inset;
+                        }
+                    }
+                }
+                .todo-date {
+                    font-size: 0.8em;
+                    margin-bottom: 2em;
+                    margin-right: 0.5em;
+                }
+
+                @include flexCenter(row, "", center)
+            }
+        }
+    }
     
 }

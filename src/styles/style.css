@@ -21,17 +21,73 @@ h1 {
   display: flex;
   justify-content: center;
   margin: 0;
+  font-size: 3em;
+}
+
+p {
+  margin: 0;
 }
 
 main {
   flex: 1;
-  padding: 50px;
 }
 
 .main-board {
-  width: 70%;
+  width: 50%;
   height: 90%;
   border: 1px solid black;
   border-radius: 15px;
   margin: 0 auto;
+  padding: 1.5em;
+}
+.main-board .project-box {
+  margin: 0.4em;
+}
+.main-board .project-box .project-header {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: bold;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 0.5em;
+}
+.main-board .project-box .todo-box {
+  padding: 0.4em;
+  box-shadow: -2px -2px 2px 1px #e2e2e2 inset;
+}
+.main-board .project-box .todo-box .todo {
+  padding: 0.4em 0.4em 0.4em 2em;
+  gap: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: "";
+  align-items: center;
+}
+.main-board .project-box .todo-box .todo .title-description {
+  flex: 1;
+}
+.main-board .project-box .todo-box .todo .title-description .todo-title {
+  font-size: 1.3em;
+  padding: 0em 0.2em 0em 0.4em;
+}
+.main-board .project-box .todo-box .todo .title-description .todo-title:focus {
+  outline: none;
+  box-shadow: -2px -2px 2px 2px rgb(202, 202, 202) inset;
+}
+.main-board .project-box .todo-box .todo .title-description .todo-description {
+  padding: 0.5em;
+  padding-left: 1.8em;
+  color: rgb(197, 197, 197);
+}
+.main-board .project-box .todo-box .todo .title-description .todo-description:hover {
+  color: black;
+}
+.main-board .project-box .todo-box .todo .title-description .todo-description:focus {
+  outline: none;
+  box-shadow: -2px -2px 2px 2px rgb(202, 202, 202) inset;
+}
+.main-board .project-box .todo-box .todo .todo-date {
+  font-size: 0.8em;
+  margin-bottom: 2em;
+  margin-right: 0.5em;
 }/*# sourceMappingURL=style.css.map */

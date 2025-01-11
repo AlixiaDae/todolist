@@ -12,6 +12,10 @@ class Todos {
     return this.projects;
   }
 
+  getProject(projectName) {
+    return this.projects.find((proj) => proj.name === projectName);
+  }
+
   addProject(newProjectObject) {
     if (this.projects.find((proj) => proj.name === newProjectObject.name))
       return;

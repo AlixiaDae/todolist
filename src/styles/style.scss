@@ -169,9 +169,7 @@ main {
 
     background-color: white;
     width: 400px;
-    height: 400px;
-    padding: 1em 1.4em 0em 1.4em;
-    gap: 10px;
+    padding: 1em 1.4em 2em 1.4em;
 
     .fa-circle-xmark {
         position: absolute;
@@ -186,13 +184,28 @@ main {
         text-align: center;
     }
 
-    label {
-        font-size: 1.4em;
-        input {
-            height: 30px;
+    .form-inputs {
+        gap: 16px;
+
+        label {
+            font-size: 1.2em;
+
+            input{
+                height: 30px;
+            }
+
+            select {
+                height: 35px;
+            }
+
+
+            @include flexCenter(column, center, "")
         }
+
         @include flexCenter(column, center, "")
     }
+
+
 
     .create-todo-btn {
         margin-top: 1em;
@@ -207,7 +220,7 @@ main {
         }
     }
 
-    @include flexCenter(column, "", "")
+    @include flexCenter(column, space-between, "")
 }
 
 .invisible {

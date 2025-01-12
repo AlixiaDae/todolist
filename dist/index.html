@@ -28,15 +28,24 @@
     <form class="todo-form invisible">
         <span class="fa-solid fa-circle-xmark"></span>
        <legend>New Todo</legend>
-       <label for="title">Title : 
-            <input type="text" name="title" id="title" required>
-        </label>
-        <label for="description">Description : 
-            <input type="text" name="description" id="description">
-        </label>
-        <label for="due date">Due Date : 
-            <input type="date" name="due date" id="due date">
-        </label>
+       <div class="form-inputs">
+            <label for="add to project"> Add to: 
+                <select name="add to project" id="add to projeect">
+                    <option value="today" selected>Today</option>
+                    <option value="this week">This Week</option>
+                    <option value="this month">This Month</option>
+                </select>
+            </label>
+           <label for="title">Title :
+                <input type="text" name="title" id="title" required>
+            </label>
+            <label for="description">Description :
+                <input type="text" name="description" id="description">
+            </label>
+            <label for="due date">Due Date :
+                <input type="date" name="due date" id="due date">
+            </label>
+       </div>
         <button class="create-todo-btn">Add a todo</button>
     </form>
     <script src="main.js"></script>

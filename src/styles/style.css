@@ -145,12 +145,10 @@ main .project-box .todo-box .todo:hover {
   border: 0.5px solid rgb(67, 224, 135);
   background-color: white;
   width: 400px;
-  height: 400px;
-  padding: 1em 1.4em 0em 1.4em;
-  gap: 10px;
+  padding: 1em 1.4em 2em 1.4em;
   display: flex;
   flex-direction: column;
-  justify-content: "";
+  justify-content: space-between;
   align-items: "";
 }
 .todo-form .fa-circle-xmark {
@@ -164,15 +162,25 @@ main .project-box .todo-box .todo:hover {
   font-weight: bold;
   text-align: center;
 }
-.todo-form label {
-  font-size: 1.4em;
+.todo-form .form-inputs {
+  gap: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: "";
 }
-.todo-form label input {
+.todo-form .form-inputs label {
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: "";
+}
+.todo-form .form-inputs label input {
   height: 30px;
+}
+.todo-form .form-inputs label select {
+  height: 35px;
 }
 .todo-form .create-todo-btn {
   margin-top: 1em;

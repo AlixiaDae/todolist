@@ -28,7 +28,7 @@ class Todo {
       let month = newDate.getMonth() + 1;
       let year = newDate.getFullYear();
 
-      let today = day + "/" + month + "/" + year;
+      let today = day + "-" + month + "-" + year;
 
       return today;
     } else {
@@ -40,5 +40,7 @@ class Todo {
     return (this.dueDate = newDate);
   }
 }
+
+
 
 export default Todo;

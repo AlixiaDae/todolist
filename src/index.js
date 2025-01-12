@@ -3,23 +3,23 @@ import Project from "./project";
 import Todos from "./Todos";
 
 // TEST
-let testTodo = new Todo("Todo 1", "new test for todo box 1");
+/*let testTodo = new Todo("Todo 1", "new test for todo box 1");
 let testTodo2 = new Todo("Todo 2", "new test for todo box 2");
-let testTodo3 = new Todo("Todo 3", "new test for todo box 3");
-let dateSortTest = new Todo("Todo 5", "new test for date sorting", "15/1/2025");
-let monthTest = new Todo("Month test", "testing month sort", "26/1/2025");
+let testTodo3 = new Todo("Todo 3", "new test for todo box 3"); */
+let dateSortTest = new Todo("Todo 5", "new test for date sorting", "15-1-2025");
+let monthTest = new Todo("Month test", "testing month sort", "26-1-2025");
 
 const allTodos = new Todos();
 
 const todayTodos = allTodos.getProject("Today");
 const weekTodos = allTodos.getProject("This Week");
 const monthTodos = allTodos.getProject("This Month");
-
+/*
 todayTodos.addTodo(testTodo);
 todayTodos.addTodo(testTodo2);
 todayTodos.addTodo(testTodo3);
-
-weekTodos.addTodo(dateSortTest);
+*/
+todayTodos.addTodo(dateSortTest);
 
 monthTodos.addTodo(monthTest);
 
@@ -30,16 +30,79 @@ allTodos.sortTodos();
 const main = document.querySelector(".main-board");
 const addBtn = document.querySelector(".button-box");
 const todoForm = document.querySelector(".todo-form");
-
+const todoSubmitBtn = document.querySelector(".create-todo-btn");
 // Listeners
 
-addBtn.addEventListener("click", (e) => {
-  todoForm.classList.toggle("invisible")
+addBtn.addEventListener("click", () => {
+  todoForm.classList.toggle("invisible");
+  let project = todoForm.elements.item(0)
+  let title = todoForm.elements.item(1);
+  let description = todoForm.elements.item(2);
+  let dueDate = todoForm.elements.item(3);
+
+  title.value = "";
+  description.value = "";
+  dueDate.value = "";
+  project.value = "today"
 });
+
+todoSubmitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let project = todoForm.elements.item(0);
+  let title = todoForm.elements.item(1);
+  let description = todoForm.elements.item(2);
+  let dueDate = todoForm.elements.item(3);
+
+  if (dueDate.value === "") {
+    const newTodo = new Todo(title.value, description.value);
+
+    if (project.value === "today") {
+      todayTodos.addTodo(newTodo);
+    } else if (project.value === "this week") {
+      weekTodos.addTodo(newTodo);
+    } else if (project.value === "this month") {
+      monthTodos.addTodo(newTodo);
+    }
+  } else {
+    let reformattedDueDate = reformatDate(dueDate.value);
+    const newTodo = new Todo(
+      title.value,
+      description.value,
+      reformattedDueDate
+    );
+
+    if (project.value === "today") {
+      todayTodos.addTodo(newTodo);
+    } else if (project.value === "this week") {
+      weekTodos.addTodo(newTodo);
+    } else if (project.value === "this month") {
+      monthTodos.addTodo(newTodo);
+    }
+  }
+
+  project.value = "today"
+  title.value = "";
+  description.value = "";
+  dueDate.value = "";
+  todoForm.classList.add("invisible");
+  allTodos.sortTodos()
+  showProjects();
+});
+
+function reformatDate(date) {
+  let dateArray = date.split("-");
+  let newDate = new Date(dateArray[0], dateArray[1], dateArray[2]);
+  let day = newDate.getDate();
+  let month = newDate.getMonth();
+  let year = newDate.getFullYear();
+
+  return `${day}-${month}-${year}`;
+}
 
 // DOM Loaders
 
 function showProjects() {
+  main.textContent = "";
   // to ensure no color repeats
   let colorArray = [
     "#FAEDCB",
@@ -57,7 +120,7 @@ function showProjects() {
 
     // Color each project header differently
 
-    let bgColorIndex = Math.floor(Math.random() * 5);
+    let bgColorIndex = Math.floor(Math.random() * (5 - 0)) + 0;
     let bgColor = colorArray[bgColorIndex];
     let projectHeader = projectBox.childNodes[0];
 
@@ -109,7 +172,7 @@ function createProjectBox(projectObject) {
     // Listeners
 
     projectBox.addEventListener("click", (e) => {
-        todoBox.classList.toggle("visible");
+      todoBox.classList.toggle("visible");
     });
   }
 
@@ -145,7 +208,7 @@ function createTodoBox(todoObject) {
 
   todo.addEventListener("click", (e) => {
     if (e.target != todoTitle) {
-        todoDescription.classList.toggle("visible");
+      todoDescription.classList.toggle("visible");
     }
   });
 

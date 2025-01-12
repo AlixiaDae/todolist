@@ -65,8 +65,7 @@ function sortWeekProject(monthProj, weekProj, todayProj) {
     if (isToday(reformattedDueDate) || beforeToday(reformattedDueDate)) {
       todayProj.addTodo(todo);
       weekProj.deleteTodo(todo.title);
-    }
-    if (!thisWeek(reformattedDueDate, fullEndOfWeekDate)) {
+    } else if (!thisWeek(reformattedDueDate, fullEndOfWeekDate)) {
       monthProj.addTodo(todo);
       weekProj.deleteTodo(todo.title);
     }
@@ -121,15 +120,14 @@ function beforeToday(dueDate) {
 function thisWeek(dueDate, weekDate) {
   const today = new Date();
   const isWithinWeekEnd =
-    dueDate.getDate() >= today.getDate() &&
+    dueDate.getDate() > today.getDate() &&
     dueDate.getMonth() === weekDate.getMonth() &&
-    dueDate.getFullYear() === weekDate.getFullYear();
-  const isBeforeWeekEnd =
+    dueDate.getFullYear() === weekDate.getFullYear() &&
     dueDate.getDate() <= weekDate.getDate() &&
     dueDate.getMonth() === weekDate.getMonth() &&
     dueDate.getFullYear() === weekDate.getFullYear();
 
-  return isBeforeWeekEnd === isWithinWeekEnd;
+  return isWithinWeekEnd;
 }
 
 // UTIL FUNCTIONS

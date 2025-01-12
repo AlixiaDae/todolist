@@ -31,12 +31,12 @@ class Todos {
 
     let today = date + "/" + month + "/" + year;
 
-    // Month Project sorting goes first so that any todos that are actually for Today gets caught in the week for loop
     let monthProject = this.getProject("This Month");
     let weekProject = this.getProject("This Week");
 
+    // Month Project sorting goes first so that any todos that are actually for Today gets caught in the week for loop
+
     // MONTH FOR LOOP
-    // get today
     for (let i = 0; i < monthProject.getTodos().length; i++) {
       let todo = monthProject.getTodos()[i];
       let todoDate = todo.getDueDate();
@@ -48,10 +48,10 @@ class Todos {
       let todoYear = Number(dateArray[2]);
 
       // for checking if end of the week is past number of days in a month
-      let numberOfDaysInMonth = this.daysInMonth(month, year);
+      let numberOfDaysInMonth = daysInMonth(month, year);
       let endOfWeekDay = date + 6;
-      let endOfMonth = month
-      let endOfYear = year
+      let endOfMonth = month;
+      let endOfYear = year;
 
       if (endOfWeekDay > numberOfDaysInMonth) {
         endOfWeekDay = 1;
@@ -59,27 +59,21 @@ class Todos {
 
         // reset month to January and add 1 to year
         if (endOfMonth === 13) {
-          endOfMonth = 1
+          endOfMonth = 1;
           endOfYear += 1;
         }
       }
 
       // Reformat for proper comparisons
-      let startDate = new Date()
-      let endOfWeekDate = new Date(endOfYear, endOfMonth - 1, endOfWeekDay)
-      let todoDueDate = new Date(todoYear, todoMonth - 1, todoDay)
+      let startDate = new Date();
+      let endOfWeekDate = new Date(endOfYear, endOfMonth - 1, endOfWeekDay);
+      let todoDueDate = new Date(todoYear, todoMonth - 1, todoDay);
 
       if (todoDueDate >= startDate && todoDueDate <= endOfWeekDate) {
-        weekProject.addTodo(todo)
-        monthProject.deleteTodo(todo.title)
+        weekProject.addTodo(todo);
+        monthProject.deleteTodo(todo.title);
       }
     }
-
-    //console.log(endOfWeekDate);
-    // get endOfWeekDay
-    // for each todo in monthProject
-    // if todo's due date > today && dueDate < endOfWeekDay
-    // push to weekProject
 
     // WEEK FOR LOOP
     for (let i = 0; i < weekProject.getTodos().length; i++) {
@@ -90,11 +84,10 @@ class Todos {
       }
     }
   }
+}
 
-  // UTIL Funcs
-  daysInMonth(month, year) {
-    return new Date(year, month, 0).getDate();
-  }
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
 }
 
 export default Todos;

@@ -22,13 +22,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-h1 {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    font-size: 3em;
+    align-items: center;
 }
 
 p {
@@ -37,19 +31,61 @@ p {
 
 main {
     flex: 1;
-}
-
-.main-board {
-    width: 50%;
-    height: 90%;
+    width: 70%;
     border: 1px solid black;
     border-radius: 15px;
-    margin: 0 auto;
-    padding: 1.5em;
+    padding: 1em 3em 0em 3em;
 
+    header {
+        h1 {
+            margin: 0;
+            font-size: 3em;
+            justify-content: start;
+        }
+        
+        .button-box {
+            background-color: #e0e0e0;
+            padding: 1em 2em 1em 2em;
+            border-radius: 25px;
+            background-color: #bff7bf;
+            color: #005c00;
+            gap: 5px;
+
+            input[type="button"] {
+                color: #005c00;
+                background-color: transparent;
+                border: none;
+                font-size: 1em;
+
+                &:hover {
+                    cursor: pointer;
+                }
+           }
+
+           &:hover .fa-solid {
+            margin-right: 2px;
+           }
+
+           &:hover input[type="button"] {
+            margin: 0px -5.7px 0px -5.7px;
+            font-weight: bold;
+            cursor: pointer;
+           }
+
+           &:hover {
+            cursor: pointer;
+            background-color: #a5f8a5;
+           }
+
+           @include flexCenter(row, "", center)
+        }
+
+        @include flexCenter(row, space-between, center)
+    }
 
     .project-box {
-        margin: 0.4em;
+        width: 95%;
+        margin: 0.5em auto;
         
         &:hover {
             cursor: pointer;
@@ -106,7 +142,7 @@ main {
                 }
 
                 .visible {
-                    padding: 1.4em 0em 1.4em 0em;
+                    padding: 1em 0em 1em 0em;
                     margin-bottom: 1em;
 
                     @include flexCenter(row, "", center)
@@ -123,11 +159,6 @@ main {
             }
         }
         
-        /* for todo box
-        .visible {
-            height: 155px;
-
-        }*/
 
     }
     

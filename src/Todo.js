@@ -22,7 +22,7 @@ class Todo {
   }
 
   getDueDate() {
-    if (this.date == "") {
+    if (this.dueDate == "") {
       let newDate = new Date();
       let day = newDate.getDate();
       let month = newDate.getMonth() + 1;

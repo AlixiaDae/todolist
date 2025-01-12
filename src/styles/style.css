@@ -15,13 +15,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-h1 {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  font-size: 3em;
+  align-items: center;
 }
 
 p {
@@ -30,28 +24,63 @@ p {
 
 main {
   flex: 1;
-}
-
-.main-board {
-  width: 50%;
-  height: 90%;
+  width: 70%;
   border: 1px solid black;
   border-radius: 15px;
-  margin: 0 auto;
-  padding: 1.5em;
+  padding: 1em 3em 0em 3em;
 }
-.main-board .project-box {
-  margin: 0.4em;
-  /* for todo box
-  .visible {
-      height: 155px;
-
-  }*/
+main header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-.main-board .project-box:hover {
+main header h1 {
+  margin: 0;
+  font-size: 3em;
+  justify-content: start;
+}
+main header .button-box {
+  background-color: #e0e0e0;
+  padding: 1em 2em 1em 2em;
+  border-radius: 25px;
+  background-color: #bff7bf;
+  color: #005c00;
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: "";
+  align-items: center;
+}
+main header .button-box input[type=button] {
+  color: #005c00;
+  background-color: transparent;
+  border: none;
+  font-size: 1em;
+}
+main header .button-box input[type=button]:hover {
   cursor: pointer;
 }
-.main-board .project-box .project-header {
+main header .button-box:hover .fa-solid {
+  margin-right: 2px;
+}
+main header .button-box:hover input[type=button] {
+  margin: 0px -5.7px 0px -5.7px;
+  font-weight: bold;
+  cursor: pointer;
+}
+main header .button-box:hover {
+  cursor: pointer;
+  background-color: #a5f8a5;
+}
+main .project-box {
+  width: 95%;
+  margin: 0.5em auto;
+}
+main .project-box:hover {
+  cursor: pointer;
+}
+main .project-box .project-header {
   margin: 0;
   font-size: 1.8em;
   font-weight: bold;
@@ -59,38 +88,38 @@ main {
   border-top-right-radius: 15px;
   padding: 0.5em;
 }
-.main-board .project-box .todo-box {
+main .project-box .todo-box {
   overflow: hidden;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
   box-shadow: 2px 2px 3px 1px #e2e2e2;
 }
-.main-board .project-box .todo-box .todo {
+main .project-box .todo-box .todo {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: "";
 }
-.main-board .project-box .todo-box .todo .check-title-date {
+main .project-box .todo-box .todo .check-title-date {
   padding: 0.5em 0.5em 0.5em 1em;
   display: flex;
   flex-direction: row;
   justify-content: "";
   align-items: center;
 }
-.main-board .project-box .todo-box .todo .check-title-date .todo-title {
+main .project-box .todo-box .todo .check-title-date .todo-title {
   font-size: 1.4em;
   margin-left: 1em;
 }
-.main-board .project-box .todo-box .todo .check-title-date .todo-date {
+main .project-box .todo-box .todo .check-title-date .todo-date {
   font-size: 0.8em;
   margin-bottom: 12px;
   position: absolute;
   right: 5px;
   top: 5px;
 }
-.main-board .project-box .todo-box .todo .todo-description {
+main .project-box .todo-box .todo .todo-description {
   height: 0;
   overflow: hidden;
   transition: all 0.5s ease-in-out;
@@ -100,15 +129,15 @@ main {
   justify-content: "";
   align-items: center;
 }
-.main-board .project-box .todo-box .todo .visible {
-  padding: 1.4em 0em 1.4em 0em;
+main .project-box .todo-box .todo .visible {
+  padding: 1em 0em 1em 0em;
   margin-bottom: 1em;
   display: flex;
   flex-direction: row;
   justify-content: "";
   align-items: center;
 }
-.main-board .project-box .todo-box .todo:hover {
+main .project-box .todo-box .todo:hover {
   cursor: pointer;
   background-color: rgb(216, 216, 216) !important;
 }/*# sourceMappingURL=style.css.map */

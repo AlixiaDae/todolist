@@ -9,8 +9,6 @@ let testTodo3 = new Todo("Todo 3", "new test for todo box 3");
 let dateSortTest = new Todo("Todo 5", "new test for date sorting", "15/1/2025");
 let monthTest = new Todo("Month test", "testing month sort", "26/1/2025");
 
-//
-
 const allTodos = new Todos();
 
 const todayTodos = allTodos.getProject("Today");
@@ -27,8 +25,20 @@ monthTodos.addTodo(monthTest)
 
 allTodos.sortTodos();
 
+
+
+
 // DOM ELEMENTS
+
 const main = document.querySelector(".main-board");
+const addBtn = document.querySelector(".button-box")
+
+
+// Listeners
+
+addBtn.addEventListener("click", (e) => {
+  
+})
 
 // DOM Loaders
 

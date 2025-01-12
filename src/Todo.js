@@ -28,11 +28,15 @@ class Todo {
       let month = newDate.getMonth() + 1;
       let year = newDate.getFullYear();
 
-      let today = day + "-" + month + "-" + year;
-
-      return today;
+      return (this.dueDate = `${year}-${month}-${day}`);
     } else {
-      return this.dueDate;
+      let dateArray = this.dueDate.split("-");
+      let newDate = new Date(dateArray[0], dateArray[1], dateArray[2]);
+      let day = newDate.getDate();
+      let month = newDate.getMonth() ;
+      let year = newDate.getFullYear();
+
+      return (this.dueDate = `${year}-${month}-${day}`);
     }
   }
 
@@ -40,7 +44,5 @@ class Todo {
     return (this.dueDate = newDate);
   }
 }
-
-
 
 export default Todo;

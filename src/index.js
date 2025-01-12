@@ -5,25 +5,27 @@ import Todos from "./Todos";
 // TEST
 /*let testTodo = new Todo("Todo 1", "new test for todo box 1");
 let testTodo2 = new Todo("Todo 2", "new test for todo box 2");
-let testTodo3 = new Todo("Todo 3", "new test for todo box 3"); */
+let testTodo3 = new Todo("Todo 3", "new test for todo box 3"); 
 let dateSortTest = new Todo("Todo 5", "new test for date sorting", "15-1-2025");
 let monthTest = new Todo("Month test", "testing month sort", "26-1-2025");
+
+
+
+todayTodos.addTodo(testTodo);
+todayTodos.addTodo(testTodo2);
+todayTodos.addTodo(testTodo3);
+todayTodos.addTodo(dateSortTest);
+
+monthTodos.addTodo(monthTest);
+*/
 
 const allTodos = new Todos();
 
 const todayTodos = allTodos.getProject("Today");
 const weekTodos = allTodos.getProject("This Week");
 const monthTodos = allTodos.getProject("This Month");
-/*
-todayTodos.addTodo(testTodo);
-todayTodos.addTodo(testTodo2);
-todayTodos.addTodo(testTodo3);
-*/
-todayTodos.addTodo(dateSortTest);
 
-monthTodos.addTodo(monthTest);
-
-allTodos.sortTodos();
+//allTodos.sortTodos();
 
 // DOM ELEMENTS
 
@@ -32,7 +34,6 @@ const addBtn = document.querySelector(".button-box");
 const todoForm = document.querySelector(".todo-form");
 const closeTodoFormBtn = document.querySelector(".fa-circle-xmark");
 const todoSubmitBtn = document.querySelector(".create-todo-btn");
-
 
 // Listeners
 
@@ -49,29 +50,27 @@ todoSubmitBtn.addEventListener("click", (e) => {
 
   if (dueDate.value === "") {
     const newTodo = new Todo(title.value, description.value);
-
+    //console.log(newTodo.getDueDate())
     if (project.value === "today") {
       todayTodos.addTodo(newTodo);
     } else if (project.value === "this week") {
       weekTodos.addTodo(newTodo);
     } else if (project.value === "this month") {
       monthTodos.addTodo(newTodo);
-    }
+    } 
   } else {
-    let reformattedDueDate = reformatDate(dueDate.value);
     const newTodo = new Todo(
       title.value,
       description.value,
-      reformattedDueDate
+      dueDate.value
     );
-
     if (project.value === "today") {
       todayTodos.addTodo(newTodo);
     } else if (project.value === "this week") {
       weekTodos.addTodo(newTodo);
     } else if (project.value === "this month") {
       monthTodos.addTodo(newTodo);
-    }
+   }
   }
 
   project.value = "today";
@@ -105,7 +104,7 @@ function reformatDate(date) {
   let month = newDate.getMonth();
   let year = newDate.getFullYear();
 
-  return `${day}-${month}-${year}`;
+  return newDate;
 }
 
 // DOM Loaders

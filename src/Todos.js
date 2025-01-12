@@ -27,19 +27,24 @@ class Todos {
     let monthProject = this.getProject("This Month");
     let weekProject = this.getProject("This Week");
 
+    // Starting from monthLoop, this function checks if a todo's dueDate is actually this week and sorts
+    // From there, the weekLoop fires and checks if a todo's dueDate is actually this week or for today and sorts
+    // Last, the todayLoop fires and checks if a todo's dueDate is NOT today
+      // if it is not for today, monthLoop and weekLoop fires again and sorts todo to proper project
+
     monthLoop(monthProject, weekProject, todayProject);
-    weekLoop(weekProject, todayProject);
+    weekLoop(monthProject, weekProject, todayProject);
     todayLoop(monthProject, weekProject, todayProject);
 
-    // WEEK FOR LOOP
-
-    // ToDAY FOR LOOP
   }
 }
+
+// UTIL FUNCTIONS
 
 function daysInMonth(month, year) {
   return new Date(year, month, 0).getDate();
 }
+
 
 function monthLoop(monthProj, weekProj, todayProj) {
   let newDate = new Date();
@@ -52,7 +57,7 @@ function monthLoop(monthProj, weekProj, todayProj) {
   for (let i = 0; i < monthProj.getTodos().length; i++) {
     let todo = monthProj.getTodos()[i];
     let todoDate = todo.getDueDate();
-    // TODO check date typeOf when making dueDate of todo from a calendar picker
+
     let dateArray = todoDate.split("-");
     let todoDay = Number(dateArray[0]);
     let todoMonth = Number(dateArray[1]);
@@ -91,7 +96,7 @@ function monthLoop(monthProj, weekProj, todayProj) {
   }
 }
 
-function weekLoop(weekProj, todayProj) {
+function weekLoop(monthProj, weekProj, todayProj) {
   let newDate = new Date();
   let date = newDate.getDate();
   let month = newDate.getMonth() + 1;
@@ -105,6 +110,8 @@ function weekLoop(weekProj, todayProj) {
       todayProj.addTodo(todo);
       weekProj.deleteTodo(todo.title);
     }
+
+    monthLoop(monthProj, weekProj, todayProj)
   }
 }
 
@@ -125,7 +132,7 @@ function todayLoop(monthProj, weekProj, todayProj) {
       todayProj.deleteTodo(todo.title);
 
       monthLoop(monthProj, weekProj);
-      weekLoop(weekProj);
+      weekLoop(monthProj, weekProj, todayProj);
     }
   }
 }

@@ -166,6 +166,7 @@ main {
 
     box-shadow: 5px 5px seagreen;
     border: 0.5px solid rgb(67, 224, 135);
+    border-radius: 15px;
 
     background-color: white;
     width: 400px;
@@ -174,8 +175,13 @@ main {
     .fa-circle-xmark {
         position: absolute;
         right: 0.5em;
-        color: rgb(255, 158, 158);
+        color: #ff9e9e;
         font-size: 1.5em;
+
+        &:hover {
+            cursor: pointer;
+            color: #f86d6d;
+        }
     }
 
     legend {

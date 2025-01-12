@@ -30,21 +30,15 @@ allTodos.sortTodos();
 const main = document.querySelector(".main-board");
 const addBtn = document.querySelector(".button-box");
 const todoForm = document.querySelector(".todo-form");
+const closeTodoFormBtn = document.querySelector(".fa-circle-xmark");
 const todoSubmitBtn = document.querySelector(".create-todo-btn");
+
+
 // Listeners
 
-addBtn.addEventListener("click", () => {
-  todoForm.classList.toggle("invisible");
-  let project = todoForm.elements.item(0)
-  let title = todoForm.elements.item(1);
-  let description = todoForm.elements.item(2);
-  let dueDate = todoForm.elements.item(3);
+addBtn.addEventListener("click", closeFormAndReset);
 
-  title.value = "";
-  description.value = "";
-  dueDate.value = "";
-  project.value = "today"
-});
+closeTodoFormBtn.addEventListener("click", closeFormAndReset);
 
 todoSubmitBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -80,14 +74,29 @@ todoSubmitBtn.addEventListener("click", (e) => {
     }
   }
 
-  project.value = "today"
+  project.value = "today";
   title.value = "";
   description.value = "";
   dueDate.value = "";
   todoForm.classList.add("invisible");
-  allTodos.sortTodos()
+  allTodos.sortTodos();
   showProjects();
 });
+
+// Listener Functions
+
+function closeFormAndReset() {
+  todoForm.classList.toggle("invisible");
+  let project = todoForm.elements.item(0);
+  let title = todoForm.elements.item(1);
+  let description = todoForm.elements.item(2);
+  let dueDate = todoForm.elements.item(3);
+
+  project.value = "today";
+  title.value = "";
+  description.value = "";
+  dueDate.value = "";
+}
 
 function reformatDate(date) {
   let dateArray = date.split("-");
@@ -100,6 +109,7 @@ function reformatDate(date) {
 }
 
 // DOM Loaders
+showProjects();
 
 function showProjects() {
   main.textContent = "";
@@ -132,8 +142,6 @@ function showProjects() {
     main.appendChild(projectBox);
   }
 }
-
-showProjects();
 
 // DOM Creation Functions
 

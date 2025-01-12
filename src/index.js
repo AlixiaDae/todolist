@@ -21,24 +21,19 @@ todayTodos.addTodo(testTodo3);
 
 weekTodos.addTodo(dateSortTest);
 
-monthTodos.addTodo(monthTest)
+monthTodos.addTodo(monthTest);
 
 allTodos.sortTodos();
-
-
-
 
 // DOM ELEMENTS
 
 const main = document.querySelector(".main-board");
-const addBtn = document.querySelector(".button-box")
-
+const addBtn = document.querySelector(".button-box");
+const todoForm = document.querySelector(".todo-form");
 
 // Listeners
 
-addBtn.addEventListener("click", (e) => {
-  
-})
+addBtn.addEventListener("click", (e) => {});
 
 // DOM Loaders
 

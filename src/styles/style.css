@@ -46,26 +46,22 @@ main header .button-box {
   border-radius: 25px;
   background-color: #bff7bf;
   color: #005c00;
-  gap: 5px;
+  gap: 10px;
   display: flex;
   flex-direction: row;
   justify-content: "";
   align-items: center;
 }
-main header .button-box input[type=button] {
+main header .button-box p {
   color: #005c00;
   background-color: transparent;
   border: none;
   font-size: 1em;
 }
-main header .button-box input[type=button]:hover {
+main header .button-box p:hover {
   cursor: pointer;
 }
-main header .button-box:hover .fa-solid {
-  margin-right: 2px;
-}
-main header .button-box:hover input[type=button] {
-  margin: 0px -5.7px 0px -5.7px;
+main header .button-box:hover p {
   font-weight: bold;
   cursor: pointer;
 }
@@ -140,4 +136,46 @@ main .project-box .todo-box .todo .visible {
 main .project-box .todo-box .todo:hover {
   cursor: pointer;
   background-color: rgb(216, 216, 216) !important;
+}
+
+.todo-form {
+  position: absolute;
+  top: 10%;
+  box-shadow: 5px 5px seagreen;
+  border: 0.5px solid rgb(67, 224, 135);
+  background-color: white;
+  width: 400px;
+  height: 400px;
+  padding: 1em 1.4em 0em 1.4em;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: "";
+  align-items: "";
+}
+.todo-form legend {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+.todo-form label {
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: "";
+}
+.todo-form label input {
+  height: 30px;
+}
+.todo-form .create-todo-btn {
+  margin-top: 1em;
+  font-size: 1em;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+}
+.todo-form .create-todo-btn:hover {
+  font-weight: bold;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

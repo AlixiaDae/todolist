@@ -49,9 +49,9 @@ main {
             border-radius: 25px;
             background-color: #bff7bf;
             color: #005c00;
-            gap: 5px;
+            gap: 10px;
 
-            input[type="button"] {
+            p{
                 color: #005c00;
                 background-color: transparent;
                 border: none;
@@ -62,12 +62,8 @@ main {
                 }
            }
 
-           &:hover .fa-solid {
-            margin-right: 2px;
-           }
+           &:hover p {
 
-           &:hover input[type="button"] {
-            margin: 0px -5.7px 0px -5.7px;
             font-weight: bold;
             cursor: pointer;
            }
@@ -162,4 +158,47 @@ main {
 
     }
     
+}
+
+.todo-form {
+    position: absolute;
+    top: 10%;
+
+    box-shadow: 5px 5px seagreen;
+    border: 0.5px solid rgb(67, 224, 135);
+
+    background-color: white;
+    width: 400px;
+    height: 400px;
+    padding: 1em 1.4em 0em 1.4em;
+    gap: 10px;
+
+    legend {
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    label {
+        font-size: 1.4em;
+        input {
+            height: 30px;
+        }
+        @include flexCenter(column, center, "")
+    }
+
+    .create-todo-btn {
+        margin-top: 1em;
+        font-size: 1em;
+        height: 50px;
+        border: none;
+        border-radius: 25px;
+
+        &:hover {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+
+    @include flexCenter(column, "", "")
 }

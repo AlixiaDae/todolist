@@ -1,8 +1,8 @@
 class Todo {
-  constructor(title, description, date = "") {
+  constructor(title, description, dueDate = "") {
     this.title = title;
     this.description = description;
-    this.date = date;
+    this.dueDate = dueDate;
   }
 
   getTitle() {
@@ -21,7 +21,7 @@ class Todo {
     return (this.description = newDescription);
   }
 
-  getDate() {
+  getDueDate() {
     if (this.date == "") {
       let newDate = new Date();
       let day = newDate.getDate();
@@ -32,12 +32,12 @@ class Todo {
 
       return today;
     } else {
-      return this.date;
+      return this.dueDate;
     }
   }
 
   setDate(newDate) {
-    return (this.date = newDate);
+    return (this.dueDate = newDate);
   }
 }
 

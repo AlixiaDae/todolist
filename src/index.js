@@ -6,8 +6,8 @@ import Todos from "./Todos";
 let testTodo = new Todo("Todo 1", "new test for todo box 1");
 let testTodo2 = new Todo("Todo 2", "new test for todo box 2");
 let testTodo3 = new Todo("Todo 3", "new test for todo box 3");
-let dateSortTest = new Todo("Todo 5", "new test for date sorting", "12/2/2025");
-
+let dateSortTest = new Todo("Todo 5", "new test for date sorting", "15/1/2025");
+let monthTest = new Todo("Month test", "testing month sort", "26/1/2025");
 
 //
 
@@ -15,15 +15,17 @@ const allTodos = new Todos();
 
 const todayTodos = allTodos.getProject("Today");
 const weekTodos = allTodos.getProject("This Week");
+const monthTodos = allTodos.getProject("This Month");
 
 todayTodos.addTodo(testTodo);
 todayTodos.addTodo(testTodo2);
 todayTodos.addTodo(testTodo3);
 
-weekTodos.addTodo(dateSortTest)
+weekTodos.addTodo(dateSortTest);
 
-allTodos.sortTodos()
+monthTodos.addTodo(monthTest)
 
+allTodos.sortTodos();
 
 // DOM ELEMENTS
 const main = document.querySelector(".main-board");
@@ -125,7 +127,7 @@ function createTodoBox(todoObject) {
 
   const todoDate = document.createElement("p");
   todoDate.classList.add("todo-date");
-  todoDate.textContent = todoObject.getDate();
+  todoDate.textContent = todoObject.getDueDate();
 
   const checkTitleDate = document.createElement("div");
   checkTitleDate.classList.add("check-title-date");

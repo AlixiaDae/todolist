@@ -173,6 +173,13 @@ main {
     padding: 1em 1.4em 0em 1.4em;
     gap: 10px;
 
+    .fa-circle-xmark {
+        position: absolute;
+        right: 0.5em;
+        color: rgb(255, 158, 158);
+        font-size: 1.5em;
+    }
+
     legend {
         font-size: 2em;
         font-weight: bold;
@@ -201,4 +208,8 @@ main {
     }
 
     @include flexCenter(column, "", "")
+}
+
+.invisible {
+    display: none;
 }

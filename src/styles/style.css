@@ -153,6 +153,12 @@ main .project-box .todo-box .todo:hover {
   justify-content: "";
   align-items: "";
 }
+.todo-form .fa-circle-xmark {
+  position: absolute;
+  right: 0.5em;
+  color: rgb(255, 158, 158);
+  font-size: 1.5em;
+}
 .todo-form legend {
   font-size: 2em;
   font-weight: bold;
@@ -178,4 +184,8 @@ main .project-box .todo-box .todo:hover {
 .todo-form .create-todo-btn:hover {
   font-weight: bold;
   cursor: pointer;
+}
+
+.invisible {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

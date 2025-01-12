@@ -33,7 +33,9 @@ const todoForm = document.querySelector(".todo-form");
 
 // Listeners
 
-addBtn.addEventListener("click", (e) => {});
+addBtn.addEventListener("click", (e) => {
+  todoForm.classList.toggle("invisible")
+});
 
 // DOM Loaders
 
@@ -107,11 +109,7 @@ function createProjectBox(projectObject) {
     // Listeners
 
     projectBox.addEventListener("click", (e) => {
-      if (todoBox.classList.contains("visible")) {
-        todoBox.classList.remove("visible");
-      } else {
-        todoBox.classList.add("visible");
-      }
+        todoBox.classList.toggle("visible");
     });
   }
 
@@ -147,11 +145,7 @@ function createTodoBox(todoObject) {
 
   todo.addEventListener("click", (e) => {
     if (e.target != todoTitle) {
-      if (todoDescription.classList.contains("visible")) {
-        todoDescription.classList.remove("visible");
-      } else {
-        todoDescription.classList.add("visible");
-      }
+        todoDescription.classList.toggle("visible");
     }
   });
 

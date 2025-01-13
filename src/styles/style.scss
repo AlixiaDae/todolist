@@ -97,9 +97,6 @@ main {
         }
 
         .todo-box {
-            //height: 0;
-            //overflow: scroll;
-            //transition: all .5s ease-in-out;
             overflow: hidden;
             border-bottom-right-radius: 15px;
             border-bottom-left-radius: 15px;
@@ -132,7 +129,7 @@ main {
                     height: 0;
                     overflow: hidden;
                     transition: all .5s ease-in-out;
-                    margin-left: 5em;
+                    margin: 0em 3em 0em 6em;
 
                     @include flexCenter(row, "", center)
                 }

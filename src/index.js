@@ -205,14 +205,46 @@ function createTodoBox(todoObject, projectTodos) {
     console.log(e.target.checked);
   });
 
-  todo.addEventListener("click", (e) => {
+  todo.addEventListener("dblclick", (e) => {
     if (e.target != todoTitle && e.target != checkBox) {
+      todoDescription.classList.add("visible");
+      todoDescription.contentEditable = true;
+      todoDescription.focus();
+      setToEndOfEditable(todoDescription);
+    }
+  });
+
+  todoDescription.addEventListener("click", () => {
+    todoDescription.contentEditable = true;
+    todoDescription.focus();
+    setToEndOfEditable(todoDescription);
+  });
+
+  todoDescription.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      todoObject.setDescription(todoDescription.textContent);
+      todoDescription.blur();
+      todoDescription.contentEditable = false;
+      console.log(projectTodos);
+    }
+  });
+
+  todo.addEventListener("click", (e) => {
+    if (
+      e.target != todoTitle &&
+      e.target != checkBox &&
+      todoDescription.textContent != "" &&
+      e.target != todoDescription
+    ) {
       todoDescription.classList.toggle("visible");
     }
   });
 
   todoTitle.addEventListener("click", () => {
     todoTitle.contentEditable = true;
+    todoDescription.contentEditable = false;
+    todoTitle.focus();
+    setToEndOfEditable(todoTitle);
   });
 
   todoTitle.addEventListener("keypress", (e) => {
@@ -227,4 +259,19 @@ function createTodoBox(todoObject, projectTodos) {
   todo.append(checkTitleDate, todoDescription);
 
   return todo;
+}
+
+// UTILS
+
+function setToEndOfEditable(editableElement) {
+  let range;
+  let selection;
+  if (document.createRange) {
+    range = document.createRange();
+    range.selectNodeContents(editableElement);
+    range.collapse(false);
+    selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
 }

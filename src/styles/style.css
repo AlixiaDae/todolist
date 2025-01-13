@@ -23,7 +23,8 @@ p {
 }
 
 main {
-  flex: 1;
+  height: 100vh;
+  overflow: scroll;
   width: 70%;
   border: 1px solid black;
   border-radius: 15px;
@@ -136,6 +137,10 @@ main .project-box .todo-box .todo .visible {
 main .project-box .todo-box .todo:hover {
   cursor: pointer;
   background-color: rgb(216, 216, 216) !important;
+}
+main .project-box .todo-box .disappear {
+  opacity: 0;
+  transition: all 1s ease-in-out;
 }
 
 .todo-form {

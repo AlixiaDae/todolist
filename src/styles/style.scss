@@ -30,7 +30,9 @@ p {
 }
 
 main {
-    flex: 1;
+    height: 100vh;
+    overflow: scroll;
+
     width: 70%;
     border: 1px solid black;
     border-radius: 15px;
@@ -78,7 +80,7 @@ main {
 
         @include flexCenter(row, space-between, center)
     }
-
+    
     .project-box {
         width: 95%;
         margin: 0.5em auto;
@@ -149,6 +151,11 @@ main {
                 @include flexCenter(column, center, "");
 
                 
+            }
+
+            .disappear {
+                opacity: 0;
+                transition: all 1s ease-in-out;
             }
         }
         

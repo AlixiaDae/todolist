@@ -89,6 +89,10 @@ function closeFormAndReset() {
   let description = todoForm.elements.item(2);
   let dueDate = todoForm.elements.item(3);
 
+  if (!todoForm.classList.contains("invisible")) {
+    title.focus();
+  }
+
   project.value = "today";
   title.value = "";
   description.value = "";
@@ -117,7 +121,7 @@ function showProjects() {
 
     // Color each project header differently
 
-    let bgColorIndex = Math.floor(Math.random() * (5 - 0)) + 0;
+    let bgColorIndex = Math.floor(Math.random() * (5 - 1)) + 1;
     let bgColor = colorArray[bgColorIndex];
     let projectHeader = projectBox.childNodes[0];
 
@@ -151,7 +155,7 @@ function createProjectBox(projectObject) {
 
     for (let i = 0; i < projectTodos.length; i++) {
       let todo = projectTodos[i];
-      let todoEl = createTodoBox(todo, projectTodos);
+      let todoEl = createTodoBox(todo, projectObject);
 
       if (i % 2 == 1) {
         todoEl.style.backgroundColor = "#e4e4e4";
@@ -166,7 +170,7 @@ function createProjectBox(projectObject) {
 
     // Listeners
 
-    projectBox.addEventListener("click", (e) => {
+    projectBox.addEventListener("click", () => {
       todoBox.classList.toggle("visible");
     });
   }
@@ -174,7 +178,7 @@ function createProjectBox(projectObject) {
   return projectBox;
 }
 
-function createTodoBox(todoObject, projectTodos) {
+function createTodoBox(todoObject, projectObject) {
   const todo = document.createElement("div");
   todo.classList.add("todo");
 
@@ -202,7 +206,13 @@ function createTodoBox(todoObject, projectTodos) {
   // Listeners
 
   checkBox.addEventListener("change", (e) => {
-    console.log(e.target.checked);
+    if (e.target.checked) {
+      todo.classList.add("disappear");
+      setTimeout(() => {
+        projectObject.deleteTodo(todoObject.title);
+        todo.remove();
+      }, 1000);
+    }
   });
 
   todo.addEventListener("dblclick", (e) => {
@@ -225,7 +235,6 @@ function createTodoBox(todoObject, projectTodos) {
       todoObject.setDescription(todoDescription.textContent);
       todoDescription.blur();
       todoDescription.contentEditable = false;
-      console.log(projectTodos);
     }
   });
 
@@ -252,7 +261,6 @@ function createTodoBox(todoObject, projectTodos) {
       todoObject.setTitle(todoTitle.textContent);
       todoTitle.blur();
       todoTitle.contentEditable = false;
-      console.log(projectTodos);
     }
   });
 

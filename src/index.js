@@ -30,6 +30,7 @@ const monthTodos = allTodos.getProject("This Month");
 // DOM ELEMENTS
 
 const main = document.querySelector(".main-board");
+
 const addBtn = document.querySelector(".button-box");
 const todoForm = document.querySelector(".todo-form");
 const closeTodoFormBtn = document.querySelector(".fa-circle-xmark");
@@ -50,27 +51,22 @@ todoSubmitBtn.addEventListener("click", (e) => {
 
   if (dueDate.value === "") {
     const newTodo = new Todo(title.value, description.value);
-    //console.log(newTodo.getDueDate())
     if (project.value === "today") {
       todayTodos.addTodo(newTodo);
     } else if (project.value === "this week") {
       weekTodos.addTodo(newTodo);
     } else if (project.value === "this month") {
       monthTodos.addTodo(newTodo);
-    } 
+    }
   } else {
-    const newTodo = new Todo(
-      title.value,
-      description.value,
-      dueDate.value
-    );
+    const newTodo = new Todo(title.value, description.value, dueDate.value);
     if (project.value === "today") {
       todayTodos.addTodo(newTodo);
     } else if (project.value === "this week") {
       weekTodos.addTodo(newTodo);
     } else if (project.value === "this month") {
       monthTodos.addTodo(newTodo);
-   }
+    }
   }
 
   project.value = "today";
@@ -78,6 +74,8 @@ todoSubmitBtn.addEventListener("click", (e) => {
   description.value = "";
   dueDate.value = "";
   todoForm.classList.add("invisible");
+
+  // Sorting todos only happens in default Projects("Today", "This Week", "This Month")
   allTodos.sortTodos();
   showProjects();
 });
@@ -95,16 +93,6 @@ function closeFormAndReset() {
   title.value = "";
   description.value = "";
   dueDate.value = "";
-}
-
-function reformatDate(date) {
-  let dateArray = date.split("-");
-  let newDate = new Date(dateArray[0], dateArray[1], dateArray[2]);
-  let day = newDate.getDate();
-  let month = newDate.getMonth();
-  let year = newDate.getFullYear();
-
-  return newDate;
 }
 
 // DOM Loaders
@@ -163,7 +151,7 @@ function createProjectBox(projectObject) {
 
     for (let i = 0; i < projectTodos.length; i++) {
       let todo = projectTodos[i];
-      let todoEl = createTodoBox(todo);
+      let todoEl = createTodoBox(todo, projectTodos);
 
       if (i % 2 == 1) {
         todoEl.style.backgroundColor = "#e4e4e4";
@@ -186,13 +174,13 @@ function createProjectBox(projectObject) {
   return projectBox;
 }
 
-function createTodoBox(todoObject) {
+function createTodoBox(todoObject, projectTodos) {
   const todo = document.createElement("div");
   todo.classList.add("todo");
 
   const checkBox = document.createElement("input");
+  checkBox.classList.add("todo-checkbox");
   checkBox.setAttribute("type", "checkbox");
-  checkBox.setAttribute("checked-id", "checkbox");
 
   const todoTitle = document.createElement("p");
   todoTitle.classList.add("todo-title");
@@ -213,14 +201,27 @@ function createTodoBox(todoObject) {
 
   // Listeners
 
+  checkBox.addEventListener("change", (e) => {
+    console.log(e.target.checked);
+  });
+
   todo.addEventListener("click", (e) => {
-    if (e.target != todoTitle) {
+    if (e.target != todoTitle && e.target != checkBox) {
       todoDescription.classList.toggle("visible");
     }
   });
 
   todoTitle.addEventListener("click", () => {
     todoTitle.contentEditable = true;
+  });
+
+  todoTitle.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      todoObject.setTitle(todoTitle.textContent);
+      todoTitle.blur();
+      todoTitle.contentEditable = false;
+      console.log(projectTodos);
+    }
   });
 
   todo.append(checkTitleDate, todoDescription);

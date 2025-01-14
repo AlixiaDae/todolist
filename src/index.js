@@ -203,6 +203,10 @@ function createTodoBox(todoObject, projectObject) {
   todoDescription.classList.add("todo-description");
   todoDescription.textContent = todoObject.description;
 
+  const todoDescriptionSaveText = document.createElement("p");
+  todoDescriptionSaveText.classList.add("todo-save-text");
+  todoDescriptionSaveText.textContent = "Ctrl + Enter to save";
+
   // Listeners
 
   checkBox.addEventListener("change", (e) => {
@@ -219,6 +223,7 @@ function createTodoBox(todoObject, projectObject) {
     if (e.target != todoTitle && e.target != checkBox) {
       todoDescription.classList.add("visible");
       todoDescription.contentEditable = true;
+      todoDescriptionSaveText.classList.add("save-text-visible");
       todoDescription.focus();
       setToEndOfEditable(todoDescription);
     }
@@ -226,14 +231,16 @@ function createTodoBox(todoObject, projectObject) {
 
   todoDescription.addEventListener("click", () => {
     todoDescription.contentEditable = true;
+    todoDescriptionSaveText.classList.add("save-text-visible");
     todoDescription.focus();
     setToEndOfEditable(todoDescription);
   });
 
   todoDescription.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && e.ctrlKey) {
       todoObject.setDescription(todoDescription.textContent);
       todoDescription.blur();
+      todoDescriptionSaveText.classList.remove("save-text-visible");
       todoDescription.contentEditable = false;
     }
   });
@@ -246,6 +253,7 @@ function createTodoBox(todoObject, projectObject) {
       e.target != todoDescription
     ) {
       todoDescription.classList.toggle("visible");
+      todoDescriptionSaveText.classList.remove("save-text-visible");
     }
   });
 
@@ -264,7 +272,7 @@ function createTodoBox(todoObject, projectObject) {
     }
   });
 
-  todo.append(checkTitleDate, todoDescription);
+  todo.append(checkTitleDate, todoDescription, todoDescriptionSaveText);
 
   return todo;
 }

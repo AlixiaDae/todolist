@@ -38,12 +38,12 @@ main header {
 }
 main header h1 {
   margin: 0;
-  font-size: 3em;
+  font-size: 2em;
   justify-content: start;
 }
 main header .button-box {
   background-color: #e0e0e0;
-  padding: 1em 2em 1em 2em;
+  padding: 0.5em 1em 0.5em 1em;
   border-radius: 25px;
   background-color: #bff7bf;
   color: #005c00;
@@ -79,7 +79,7 @@ main .project-box:hover {
 }
 main .project-box .project-header {
   margin: 0;
-  font-size: 1.8em;
+  font-size: 1.3em;
   font-weight: bold;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -106,7 +106,7 @@ main .project-box .todo-box .todo .check-title-date {
   align-items: center;
 }
 main .project-box .todo-box .todo .check-title-date .todo-title {
-  font-size: 1.4em;
+  font-size: 1.2em;
   margin-left: 1em;
 }
 main .project-box .todo-box .todo .check-title-date .todo-date {
@@ -117,7 +117,8 @@ main .project-box .todo-box .todo .check-title-date .todo-date {
   top: 5px;
 }
 main .project-box .todo-box .todo .todo-description {
-  height: 0;
+  max-height: 0;
+  font-size: 1em;
   overflow: hidden;
   transition: all 0.5s ease-in-out;
   margin: 0em 3em 0em 6em;
@@ -127,12 +128,24 @@ main .project-box .todo-box .todo .todo-description {
   align-items: center;
 }
 main .project-box .todo-box .todo .visible {
-  padding: 1em 0em 1em 0em;
+  max-height: 100px;
+  overflow: scroll;
   margin-bottom: 1em;
   display: flex;
   flex-direction: row;
   justify-content: "";
   align-items: center;
+}
+main .project-box .todo-box .todo .todo-save-text {
+  position: absolute;
+  opacity: 0;
+  right: 3.5em;
+  top: 2.8em;
+  color: #858585;
+  transition: all 0.2s ease-in-out;
+}
+main .project-box .todo-box .todo .save-text-visible {
+  opacity: 1;
 }
 main .project-box .todo-box .todo:hover {
   cursor: pointer;
